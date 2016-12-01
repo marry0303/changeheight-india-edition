@@ -1,0 +1,100 @@
+package com.world1.yuto.changeheight;
+
+
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import static com.world1.yuto.changeheight.R.id.editText;
+
+
+public class MainActivity extends AppCompatActivity {
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        Button btnDisp = (Button) findViewById(R.id.button3);
+        btnDisp.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Sub 画面を起動
+                Intent intent = new Intent();
+                intent.setClassName("com.world1.yuto.changeheight", "com.world1.yuto.changeheight.howtouse");
+                startActivity(intent);
+            }
+        });
+
+        Button B = (Button) findViewById(R.id.button4);
+        B.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Sub 画面を起動
+                Intent intent = new Intent();
+                intent.setClassName("com.world1.yuto.changeheight", "com.world1.yuto.changeheight.imperial");
+                startActivity(intent);
+            }
+        });}
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    public void button_click(View view) {
+        EditText editText1 = (EditText) findViewById(editText);
+        String A = editText1.getText().toString().trim();
+        if (A.equals("")) {
+            Toast.makeText(
+                    this,
+                    "Please enter your height",
+                    Toast.LENGTH_LONG
+            ).show();
+            return;
+        }
+        int a = Integer.parseInt(A);
+        if (a > 250 || a < 20) {
+            Toast.makeText(
+                    this,
+                    "You can enter from 20cm to 250cm!",
+                    Toast.LENGTH_LONG
+            ).show();
+        } else {
+            double b = a / 1.084265964450296;
+            int B = (int) Math.round(b);
+
+            TextView textView = (TextView) findViewById(R.id.textView);
+            String s = String.valueOf(B);
+            textView.setText(String.valueOf("If you are girl,you are " + s + "cm."));
+        }
+    }
+
+
+    public void button2_click(View view) {
+        EditText editText1 = (EditText) findViewById(editText);
+        String A = editText1.getText().toString().trim();
+        if (A.equals("")) {
+            Toast.makeText(this, "Please enter your height", Toast.LENGTH_LONG).show();
+            return;
+        }
+        int a = Integer.parseInt(A);
+        if (a > 250 || a < 20) {
+            Toast.makeText(
+                    this,
+                    "You can enter from 20cm to 250cm!",
+                    Toast.LENGTH_LONG
+            ).show();
+        } else {
+            double b = a * 1.084265964450296;
+            int B = (int) Math.round(b);
+
+            TextView textView = (TextView) findViewById(R.id.textView);
+            String s = String.valueOf(B);
+            textView.setText(String.valueOf("If you are boy,you are " + s + "cm."));
+        }
+    }
+}
