@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
         Button btnDisp = (Button) findViewById(R.id.button3);
         btnDisp.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                // Sub 画面を起動
                 Intent intent = new Intent();
                 intent.setClassName("com.world1.yuto.changeheight", "com.world1.yuto.changeheight.howtouse");
                 startActivity(intent);
@@ -33,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
         Button B = (Button) findViewById(R.id.button4);
         B.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                // Sub 画面を起動
                 Intent intent = new Intent();
                 intent.setClassName("com.world1.yuto.changeheight", "com.world1.yuto.changeheight.imperial");
                 startActivity(intent);
